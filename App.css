@@ -1,0 +1,221 @@
+/* App.css */
+
+/* Global transition for smooth theme switching */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ==============================================================
+   LIGHT MODE: THE FULL APP OVERRIDE
+============================================================== */
+
+/* 1. App Background & Base (soft blue-white) */
+body.light-mode,
+body.light-mode #root,
+body.light-mode [data-reactroot],
+body.light-mode [data-class-name~="sivo-bg-container"],
+body.light-mode [data-classname~="sivo-bg-container"],
+body.light-mode .sivo-bg-container,
+body.light-mode div[class*="container"] /* Fallback for generic container classes */ {
+  background-color: #F0F4FF !important;
+}
+
+/* 2. Base Text Colors */
+body.light-mode [dir="auto"],
+body.light-mode span,
+body.light-mode p {
+  color: #0f172a !important;
+}
+
+/* Fallback: Muted text to #475569 or #64748b */
+body.light-mode div[style*="color: rgb(226, 232, 240)"], 
+body.light-mode div[style*="color: #E2E8F0"] {
+  color: #475569 !important;
+}
+body.light-mode div[style*="color: rgb(148, 163, 184)"], 
+body.light-mode div[style*="color: #94A3B8"] {
+  color: #64748b !important;
+}
+
+/* Protect the Gradient Cards text! */
+body.light-mode div[style*="linear-gradient"] [dir="auto"],
+body.light-mode div[style*="linear-gradient"] span,
+body.light-mode div[style*="linear-gradient"] p {
+  color: #ffffff !important;
+}
+
+/* 3. Top Navbar */
+body.light-mode [data-class-name~="sivo-top-bar"],
+body.light-mode [data-classname~="sivo-top-bar"],
+body.light-mode .sivo-top-bar,
+body.light-mode div[style*="rgba(0, 0, 0, 0.7)"] /* TopBar BlurView Fallback */ {
+  background-color: #ffffff !important;
+  border-bottom-width: 1px !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+body.light-mode [data-class-name~="sivo-profile-btn"],
+body.light-mode [data-classname~="sivo-profile-btn"],
+body.light-mode .sivo-profile-btn,
+body.light-mode div[style*="rgba(255, 255, 255, 0.1)"] /* Avatar Fallback */ {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* SVG Colors in Top Navbar etc */
+body.light-mode svg path,
+body.light-mode svg circle,
+body.light-mode svg rect,
+body.light-mode svg line,
+body.light-mode svg polyline,
+body.light-mode svg polygon {
+  stroke: #0f172a !important;
+}
+
+/* Revert SVG stroke inside gradients and action buttons */
+body.light-mode div[style*="linear-gradient"] svg path,
+body.light-mode div[style*="linear-gradient"] svg polyline,
+body.light-mode div[style*="linear-gradient"] svg line,
+body.light-mode div[style*="linear-gradient"] svg circle,
+body.light-mode [data-classname~="sivo-action-btn"] svg path,
+body.light-mode [data-classname~="sivo-action-btn"] svg polyline,
+body.light-mode [data-classname~="sivo-action-btn"] svg line,
+body.light-mode [data-classname~="sivo-action-btn"] svg circle {
+  stroke: #ffffff !important;
+}
+
+/* Action Buttons specifically styled according to user */
+body.light-mode [data-class-name~="sivo-action-btn"],
+body.light-mode [data-classname~="sivo-action-btn"],
+body.light-mode .sivo-action-btn {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
+  border: none !important;
+}
+body.light-mode [data-classname~="sivo-action-btn"] [dir="auto"],
+body.light-mode [data-classname~="sivo-action-btn"] span,
+body.light-mode [data-classname~="sivo-action-btn"] p {
+  color: #ffffff !important;
+}
+
+/* Back Button specifically styled according to user */
+body.light-mode [data-class-name~="sivo-back-btn"],
+body.light-mode [data-classname~="sivo-back-btn"],
+body.light-mode .sivo-back-btn {
+  background-color: #e2e8f0 !important;
+  border-radius: 20px;
+  padding: 4px;
+}
+body.light-mode [data-classname~="sivo-back-btn"] svg path {
+  stroke: #0f172a !important;
+}
+
+/* Status Text specifically styled according to user */
+body.light-mode [data-class-name~="sivo-status-text"],
+body.light-mode [data-classname~="sivo-status-text"] {
+  color: #334155 !important;
+}
+
+/* 4. Hero Section */
+body.light-mode [data-class-name~="sivo-hero-title"],
+body.light-mode [data-classname~="sivo-hero-title"],
+body.light-mode .sivo-hero-title {
+  color: #0f172a !important;
+}
+body.light-mode [data-class-name~="sivo-hero-subtitle"],
+body.light-mode [data-classname~="sivo-hero-subtitle"],
+body.light-mode .sivo-hero-subtitle {
+  color: #475569 !important;
+}
+
+/* 5. Main Feature Cards */
+body.light-mode [data-class-name~="sivo-feature-icon-bg"],
+body.light-mode [data-classname~="sivo-feature-icon-bg"],
+body.light-mode .sivo-feature-icon-bg,
+body.light-mode div[style*="rgba(255,255,255,0.2)"] {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* 6. Quick Actions Section */
+body.light-mode [data-class-name~="sivo-quick-action-card"],
+body.light-mode [data-classname~="sivo-quick-action-card"],
+body.light-mode .sivo-quick-action-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+}
+body.light-mode [data-class-name~="sivo-quick-title"],
+body.light-mode [data-classname~="sivo-quick-title"],
+body.light-mode .sivo-quick-title { color: #0f172a !important; }
+
+body.light-mode [data-class-name~="sivo-quick-subtitle"],
+body.light-mode [data-classname~="sivo-quick-subtitle"],
+body.light-mode .sivo-quick-subtitle { color: #64748b !important; }
+
+body.light-mode [data-class-name~="sivo-quick-arrow"],
+body.light-mode [data-classname~="sivo-quick-arrow"],
+body.light-mode .sivo-quick-arrow { color: #94a3b8 !important; }
+
+/* 7. Bottom Navigation Bar */
+body.light-mode [data-class-name~="sivo-bottom-bar"],
+body.light-mode [data-classname~="sivo-bottom-bar"],
+body.light-mode .sivo-bottom-bar {
+  background-color: #ffffff !important;
+  border-top-width: 1px !important;
+  border-top-color: #e2e8f0 !important;
+}
+body.light-mode [data-class-name~="sivo-bottom-icon-inactive"],
+body.light-mode [data-classname~="sivo-bottom-icon-inactive"],
+body.light-mode .sivo-bottom-icon-inactive { color: #94a3b8 !important; }
+
+body.light-mode [data-class-name~="sivo-bottom-label"],
+body.light-mode [data-classname~="sivo-bottom-label"],
+body.light-mode .sivo-bottom-label { color: #94a3b8 !important; }
+
+body.light-mode [data-class-name~="sivo-bottom-icon-active"],
+body.light-mode [data-classname~="sivo-bottom-icon-active"],
+body.light-mode .sivo-bottom-icon-active { color: #06b6d4 !important; } /* Active color preserved */
+
+/* 8. All Other Screens (Chat, History, Settings, Modals) */
+
+/* Dark Cards and Panels (Fallback to White) */
+body.light-mode [data-class-name~="sivo-card"],
+body.light-mode [data-classname~="sivo-card"],
+body.light-mode .sivo-card,
+body.light-mode div[style*="rgba(255, 255, 255, 0.03)"],
+body.light-mode div[style*="rgba(255, 255, 255, 0.05)"],
+body.light-mode div[style*="rgba(0, 0, 0, 0.7)"],
+body.light-mode div[style*="rgba(0,0,0,0.7)"] {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+}
+
+/* All inputs/textareas, explicitly ignoring Switch checkboxes */
+body.light-mode input[type="text"],
+body.light-mode input[type="tel"],
+body.light-mode input[type="email"],
+body.light-mode input[type="password"],
+body.light-mode input[type="number"],
+body.light-mode textarea {
+  background-color: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Hide ambient glows in light mode to prevent smudging */
+body.light-mode [data-class-name~="sivo-glow"],
+body.light-mode [data-classname~="sivo-glow"],
+body.light-mode .sivo-glow {
+  opacity: 0 !important;
+  display: none !important;
+}
+
+/* Scrollbars */
+body.light-mode ::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 4px;
+}
+
+ 

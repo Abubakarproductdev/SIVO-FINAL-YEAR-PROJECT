@@ -67,9 +67,9 @@ function LiveConversationScreen({ navigate }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} dataSet={{ className: 'sivo-bg-container' }}>
       {/* Ambient glow */}
-      <View style={styles.glowAccent} />
+      <View style={styles.glowAccent} dataSet={{ className: 'sivo-glow' }} />
 
       {/* HEADER */}
       <BlurView intensity={30} tint="dark" style={styles.header}>
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.sm,
     borderBottomWidth: 1,
     borderColor: COLORS.border,
-    backgroundColor: 'rgba(10,10,26,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
   },
   headerTitle: { fontFamily: TYPOGRAPHY.fontFamily.heading, color: '#FFF', fontSize: TYPOGRAPHY.size.header, letterSpacing: 1 },
   endButton: {
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: 'rgba(10,10,26,0.65)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
     borderTopWidth: 1,
     borderColor: COLORS.border,
     paddingBottom: 20,

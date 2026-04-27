@@ -26,17 +26,17 @@ const { width } = Dimensions.get('window');
 // =============================================
 function HomeScreen({ navigate }) {
   return (
-    <View style={styles.homeContainer}>
+    <View style={styles.homeContainer} dataSet={{ className: 'sivo-bg-container' }}>
       {/* Ambient background glows */}
-      <View style={styles.ambientGlowPrimary} />
-      <View style={styles.ambientGlowAccent} />
+      <View style={styles.ambientGlowPrimary} dataSet={{ className: 'sivo-glow' }} />
+      <View style={styles.ambientGlowAccent} dataSet={{ className: 'sivo-glow' }} />
 
       <ScrollView
         contentContainerStyle={styles.homeContent}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.homeWelcome}>Hello! 👋</Text>
-        <Text style={styles.homeSubtitle}>
+        <Text style={styles.homeWelcome} dataSet={{ className: 'sivo-hero-title' }}>Hello! 👋</Text>
+        <Text style={styles.homeSubtitle} dataSet={{ className: 'sivo-hero-subtitle' }}>
           Bridge communication gaps with real-time sign language translation
         </Text>
 
@@ -52,7 +52,7 @@ function HomeScreen({ navigate }) {
               end={{ x: 1, y: 1 }}
               style={styles.featureCard}
             >
-              <View style={styles.featureIconBg}>
+              <View style={styles.featureIconBg} dataSet={{ className: 'sivo-feature-icon-bg' }}>
                 <Video size={28} color={COLORS.accent} />
               </View>
               <Text style={styles.featureTitle}>Sign → Speech</Text>
@@ -71,7 +71,7 @@ function HomeScreen({ navigate }) {
               end={{ x: 1, y: 1 }}
               style={styles.featureCard}
             >
-              <View style={styles.featureIconBg}>
+              <View style={styles.featureIconBg} dataSet={{ className: 'sivo-feature-icon-bg' }}>
                 <Mic size={28} color={COLORS.primary} />
               </View>
               <Text style={styles.featureTitle}>Speech → Sign</Text>
@@ -80,25 +80,25 @@ function HomeScreen({ navigate }) {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionTitle}>Quick Actions</Text>
+        <Text style={styles.sectionTitle} dataSet={{ className: 'sivo-quick-action-section-title' }}>Quick Actions</Text>
 
         <TouchableOpacity
           onPress={() => navigate('Conversation')}
           activeOpacity={0.8}
         >
-          <BlurView intensity={20} tint="dark" style={styles.quickActionCard}>
-            <LinearGradient 
-              colors={[COLORS.coral, COLORS.accentEnd]} 
-              start={{x: 0, y: 0}} end={{x: 1, y: 1}} 
+          <BlurView intensity={20} tint="dark" style={styles.quickActionCard} dataSet={{ className: 'sivo-quick-action-card' }}>
+            <LinearGradient
+              colors={[COLORS.coral, COLORS.accentEnd]}
+              start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
               style={styles.quickActionIcon}
             >
               <MessageSquare size={22} color="#FFF" />
             </LinearGradient>
             <View style={styles.quickActionText}>
-              <Text style={styles.quickActionTitle}>Live Conversation</Text>
-              <Text style={styles.quickActionSubtitle}>Start real-time chat</Text>
+              <Text style={styles.quickActionTitle} dataSet={{ className: 'sivo-quick-title' }}>Live Conversation</Text>
+              <Text style={styles.quickActionSubtitle} dataSet={{ className: 'sivo-quick-subtitle' }}>Start real-time chat</Text>
             </View>
-            <ArrowRight size={20} color={COLORS.textMuted} />
+            <ArrowRight size={20} color={COLORS.textMuted} className="sivo-quick-arrow" />
           </BlurView>
         </TouchableOpacity>
 
@@ -106,19 +106,19 @@ function HomeScreen({ navigate }) {
           onPress={() => navigate('History')}
           activeOpacity={0.8}
         >
-          <BlurView intensity={20} tint="dark" style={styles.quickActionCard}>
-            <LinearGradient 
-              colors={[COLORS.violet, COLORS.primaryEnd]} 
-              start={{x: 0, y: 0}} end={{x: 1, y: 1}} 
+          <BlurView intensity={20} tint="dark" style={styles.quickActionCard} dataSet={{ className: 'sivo-quick-action-card' }}>
+            <LinearGradient
+              colors={[COLORS.violet, COLORS.primaryEnd]}
+              start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
               style={styles.quickActionIcon}
             >
               <History size={22} color="#FFF" />
             </LinearGradient>
             <View style={styles.quickActionText}>
-              <Text style={styles.quickActionTitle}>View History</Text>
-              <Text style={styles.quickActionSubtitle}>Past translations</Text>
+              <Text style={styles.quickActionTitle} dataSet={{ className: 'sivo-quick-title' }}>View History</Text>
+              <Text style={styles.quickActionSubtitle} dataSet={{ className: 'sivo-quick-subtitle' }}>Past translations</Text>
             </View>
-            <ArrowRight size={20} color={COLORS.textMuted} />
+            <ArrowRight size={20} color={COLORS.textMuted} className="sivo-quick-arrow" />
           </BlurView>
         </TouchableOpacity>
       </ScrollView>
@@ -137,19 +137,19 @@ const styles = StyleSheet.create({
     borderRadius: 100, backgroundColor: COLORS.accent, opacity: 0.1, transform: [{ scale: 1.5 }],
   },
   homeContent: { padding: SPACING.xl, paddingBottom: SPACING.xxxl },
-  homeWelcome: { 
+  homeWelcome: {
     fontFamily: TYPOGRAPHY.fontFamily.heading,
-    fontSize: TYPOGRAPHY.size.xl, 
-    color: '#FFF', 
+    fontSize: TYPOGRAPHY.size.xl,
+    color: '#FFF',
     marginBottom: 8,
     letterSpacing: 1,
   },
-  homeSubtitle: { 
+  homeSubtitle: {
     fontFamily: TYPOGRAPHY.fontFamily.body,
-    fontSize: TYPOGRAPHY.size.body, 
-    color: COLORS.textSecondary, 
-    lineHeight: 24, 
-    marginBottom: SPACING.xxxl 
+    fontSize: TYPOGRAPHY.size.body,
+    color: COLORS.textSecondary,
+    lineHeight: 24,
+    marginBottom: SPACING.xxxl
   },
   featureGrid: { flexDirection: 'row', gap: SPACING.lg, marginBottom: SPACING.xxxl },
   featureCardContainer: { flex: 1, ...SHADOWS.glowPrimary },

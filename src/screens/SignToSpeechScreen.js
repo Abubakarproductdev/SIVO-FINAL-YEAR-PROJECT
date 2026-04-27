@@ -95,18 +95,18 @@ function SignToSpeechScreen({ navigate }) {
 
   if (status === 'translating') {
     return (
-      <View style={styles.loadingContainer}>
-        <View style={styles.loadingGlow} />
+      <View style={styles.loadingContainer} dataSet={{ className: 'sivo-bg-container' }}>
+        <View style={styles.loadingGlow} dataSet={{ className: 'sivo-glow' }} />
         <ActivityIndicator size="large" color={COLORS.primaryEnd} />
-        <Text style={styles.loadingText}>Processing...</Text>
+        <Text style={styles.loadingText} dataSet={{ className: 'sivo-status-text' }}>Processing...</Text>
       </View>
     );
   }
 
   if (!cameraPermission || !cameraPermission.granted || !audioPermission) {
     return (
-      <View style={styles.permissionContainer}>
-        <Text style={styles.permissionText}>Permissions needed.</Text>
+      <View style={styles.permissionContainer} dataSet={{ className: 'sivo-bg-container' }}>
+        <Text style={styles.permissionText} dataSet={{ className: 'sivo-status-text' }}>Permissions needed.</Text>
         <TouchableOpacity onPress={requestCameraPermission}>
           <LinearGradient
             colors={[COLORS.primary, COLORS.primaryEnd]}
@@ -122,7 +122,7 @@ function SignToSpeechScreen({ navigate }) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} dataSet={{ className: 'sivo-bg-container' }}>
       {/* CAMERA VIEWPORT */}
       <View style={styles.cameraWrapper}>
         <CameraView style={{ flex: 1 }} facing="back" mode="video" ref={(ref) => setCameraRef(ref)}>
@@ -135,7 +135,7 @@ function SignToSpeechScreen({ navigate }) {
       </View>
 
       {/* CONTROLS */}
-      <View style={styles.controls}>
+      <View style={[styles.controls, { backgroundColor: '#E5E7EB' }]}>
         {status === 'idle' ? (
           <TouchableOpacity onPress={startRecording} style={styles.controlButtonWrapper}>
             <LinearGradient
@@ -197,9 +197,9 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS.xxl,
     borderWidth: 1,
     borderColor: 'rgba(244,63,94,0.3)',
-  },
+  }, controls: { height: 120, justifyContent: 'center', alignItems: 'center', backgroundColor: '#FFFFFF' },
   recText: { fontFamily: TYPOGRAPHY.fontFamily.bodyBold, color: COLORS.error, fontSize: 12 },
-  controls: { height: 120, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.bgDark },
+
   controlButtonWrapper: { ...SHADOWS.glowPrimary, borderRadius: RADIUS.round },
   controlButton: {
     flexDirection: 'row',

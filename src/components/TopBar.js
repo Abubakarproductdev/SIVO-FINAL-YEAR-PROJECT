@@ -21,19 +21,19 @@ function TopBar({ screen, onBackClick }) {
   const isHomeScreen = screen === 'Home';
 
   return (
-    <BlurView intensity={40} tint="dark" style={styles.topBarWrapper}>
+    <BlurView intensity={40} tint="dark" style={styles.topBarWrapper} dataSet={{ className: 'sivo-top-bar' }}>
       <SafeAreaView>
         <View style={styles.topBar}>
           {isHomeScreen ? (
             <View style={styles.topBarIconPlaceholder} />
           ) : (
-            <TouchableOpacity onPress={onBackClick} style={styles.topBarIcon}>
+            <TouchableOpacity onPress={onBackClick} style={styles.topBarIcon} dataSet={{ className: 'sivo-back-btn' }}>
               <ArrowLeft size={24} color={COLORS.textPrimary} />
             </TouchableOpacity>
           )}
-          <Text style={styles.topBarTitle}>{titles[screen] || 'SIVO'}</Text>
+          <Text style={styles.topBarTitle} dataSet={{ className: 'sivo-top-nav-text' }}>{titles[screen] || 'SIVO'}</Text>
           <TouchableOpacity style={styles.topBarIcon}>
-            <View style={styles.topBarAvatar}>
+            <View style={styles.topBarAvatar} dataSet={{ className: 'sivo-profile-btn' }}>
               <User size={18} color={COLORS.textPrimary} />
             </View>
           </TouchableOpacity>
@@ -45,7 +45,7 @@ function TopBar({ screen, onBackClick }) {
 
 const styles = StyleSheet.create({
   topBarWrapper: { 
-    backgroundColor: 'rgba(10, 10, 26, 0.65)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', 
     borderBottomWidth: 1, 
     borderBottomColor: 'rgba(255,255,255,0.08)', 
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 

@@ -22,7 +22,7 @@ function BottomTabBar({ currentScreen, navigate }) {
   ];
 
   return (
-    <BlurView intensity={40} tint="dark" style={styles.tabBarWrapper}>
+    <BlurView intensity={40} tint="dark" style={styles.tabBarWrapper} dataSet={{ className: 'sivo-bottom-bar' }}>
       <SafeAreaView>
         <View style={styles.tabBar}>
           {tabs.map((tab) => {
@@ -43,6 +43,7 @@ function BottomTabBar({ currentScreen, navigate }) {
                   <tab.icon
                     size={22}
                     color={isActive ? COLORS.success : COLORS.textMuted} // Success is Cyan, looks great for active
+                    className={isActive ? 'sivo-bottom-icon-active' : 'sivo-bottom-icon-inactive'}
                   />
                 </View>
                 <Text
@@ -50,6 +51,7 @@ function BottomTabBar({ currentScreen, navigate }) {
                     styles.tabLabel,
                     { color: isActive ? COLORS.success : COLORS.textMuted },
                   ]}
+                  dataSet={{ className: isActive ? 'sivo-bottom-icon-active' : 'sivo-bottom-label' }}
                 >
                   {tab.name}
                 </Text>
@@ -64,7 +66,7 @@ function BottomTabBar({ currentScreen, navigate }) {
 
 const styles = StyleSheet.create({
   tabBarWrapper: { 
-    backgroundColor: 'rgba(10, 10, 26, 0.65)', 
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', 
     borderTopWidth: 1, 
     borderTopColor: 'rgba(255,255,255,0.08)' 
   },

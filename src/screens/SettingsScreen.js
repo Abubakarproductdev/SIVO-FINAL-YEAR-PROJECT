@@ -33,7 +33,12 @@ import Card from '../components/Card';
 function SettingsScreen({ navigate }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof document !== 'undefined') {
+      return !document.body.classList.contains('light-mode');
+    }
+    return true;
+  });
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [editingProfile, setEditingProfile] = useState(false);
   const [name, setName] = useState('');
@@ -50,14 +55,15 @@ function SettingsScreen({ navigate }) {
         const docSnap = await getDoc(userRef);
         if (docSnap.exists()) {
           const data = docSnap.data();
-          setIsDarkMode(data.isDarkMode ?? true);
+          // Comment out automatic override from firebase to prevent mismatch UI
+          // setIsDarkMode(data.isDarkMode ?? true);
           setNotificationsEnabled(data.notificationsEnabled ?? true);
           setName(data.name || '');
           setPhone(data.phone || '');
         } else {
           await setDoc(userRef, {
             email: auth.currentUser.email,
-            isDarkMode: true,
+            isDarkMode: isDarkMode,
             notificationsEnabled: true,
             createdAt: new Date().toISOString(),
           });
@@ -72,7 +78,13 @@ function SettingsScreen({ navigate }) {
   }, []);
 
   const updateToggle = async (key, value) => {
-    if (key === 'isDarkMode') setIsDarkMode(value);
+    if (key === 'isDarkMode') {
+      setIsDarkMode(value);
+      if (typeof document !== 'undefined' && typeof localStorage !== 'undefined') {
+        const isLight = document.body.classList.toggle('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      }
+    }
     if (key === 'notificationsEnabled') setNotificationsEnabled(value);
     if (auth?.currentUser) {
       const userRef = doc(db, 'users', auth.currentUser.uid);
@@ -112,7 +124,7 @@ function SettingsScreen({ navigate }) {
 
   if (editingProfile) {
     return (
-      <View style={styles.settingsContainer}>
+      <View style={styles.settingsContainer} dataSet={{ className: 'sivo-bg-container' }}>
         <BlurView intensity={30} tint="dark" style={styles.settingsHeader}>
           <TouchableOpacity
             onPress={() => setEditingProfile(false)}
@@ -170,9 +182,9 @@ function SettingsScreen({ navigate }) {
   }
 
   return (
-    <View style={styles.settingsContainer}>
+    <View style={styles.settingsContainer} dataSet={{ className: 'sivo-bg-container' }}>
       {/* Ambient glow */}
-      <View style={styles.glowPrimary} />
+      <View style={styles.glowPrimary} dataSet={{ className: 'sivo-glow' }} />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.settingsTitleSection}>
@@ -192,7 +204,7 @@ function SettingsScreen({ navigate }) {
               onPress={() => setEditingProfile(true)}
               activeOpacity={0.7}
             >
-              <BlurView intensity={15} tint="dark" style={styles.settingsItem}>
+              <BlurView intensity={15} tint="dark" style={styles.settingsItem} dataSet={{ className: 'sivo-card' }}>
                 <View style={styles.settingsItemLeft}>
                   <LinearGradient
                     colors={[COLORS.primary, COLORS.primaryEnd]}
@@ -208,7 +220,7 @@ function SettingsScreen({ navigate }) {
               </BlurView>
             </TouchableOpacity>
 
-            <BlurView intensity={15} tint="dark" style={styles.settingsItem}>
+            <BlurView intensity={15} tint="dark" style={styles.settingsItem} dataSet={{ className: 'sivo-card' }}>
               <View style={styles.settingsItemLeft}>
                 <LinearGradient
                   colors={[COLORS.accent, COLORS.accentEnd]}
@@ -223,12 +235,16 @@ function SettingsScreen({ navigate }) {
               <Switch
                 value={notificationsEnabled}
                 onValueChange={(val) => updateToggle('notificationsEnabled', val)}
-                trackColor={{ false: 'rgba(255,255,255,0.1)', true: COLORS.primary }}
-                thumbColor="#FFF"
+                trackColor={{
+                  false: 'rgba(148, 163, 184, 0.4)',
+                  true: '#7c3aed'
+                }}
+                thumbColor={notificationsEnabled ? '#00f5c4' : '#e2e8f0'}
+                ios_backgroundColor="rgba(148, 163, 184, 0.4)"
               />
             </BlurView>
 
-            <BlurView intensity={15} tint="dark" style={styles.settingsItem}>
+            <BlurView intensity={15} tint="dark" style={styles.settingsItem} dataSet={{ className: 'sivo-card' }}>
               <View style={styles.settingsItemLeft}>
                 <LinearGradient
                   colors={['#7c3aed', '#a855f7']}
@@ -243,8 +259,12 @@ function SettingsScreen({ navigate }) {
               <Switch
                 value={isDarkMode}
                 onValueChange={(val) => updateToggle('isDarkMode', val)}
-                trackColor={{ false: 'rgba(255,255,255,0.1)', true: COLORS.primaryEnd }}
-                thumbColor="#FFF"
+                trackColor={{
+                  false: 'rgba(148, 163, 184, 0.4)',
+                  true: '#7c3aed'
+                }}
+                thumbColor={isDarkMode ? '#00f5c4' : '#e2e8f0'}
+                ios_backgroundColor="rgba(148, 163, 184, 0.4)"
               />
             </BlurView>
           </View>
@@ -276,7 +296,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.lg,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
-    backgroundColor: 'rgba(10,10,26,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
   },
   backBtn: { width: 44, height: 44, justifyContent: 'center', alignItems: 'center', marginRight: SPACING.sm },
   settingsHeaderTitle: { fontFamily: TYPOGRAPHY.fontFamily.heading, fontSize: TYPOGRAPHY.size.header, color: '#FFF', letterSpacing: 1 },

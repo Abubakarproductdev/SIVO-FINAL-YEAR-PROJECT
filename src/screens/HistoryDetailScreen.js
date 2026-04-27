@@ -24,7 +24,7 @@ function HistoryDetailScreen({ item, navigate }) {
     <View style={styles.container}>
       {/* HEADER */}
       <LinearGradient
-        colors={['rgba(10,10,26,0.98)', 'rgba(10,10,26,0.85)']}
+        colors={['rgba(0,0,0,0.98)', 'rgba(0,0,0,0.85)']}
         style={styles.header}
       >
         <TouchableOpacity onPress={() => navigate('History')} style={styles.backButton}>

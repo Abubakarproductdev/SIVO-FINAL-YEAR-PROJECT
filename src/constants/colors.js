@@ -2,10 +2,10 @@
 // DEEP SPACE COLOR PALETTE
 // =============================================
 const COLORS = {
-  bgDark: '#0A0A1A', // Deep space background (near-black deep navy)
-  bgCard: 'rgba(255, 255, 255, 0.03)', // Base for glassmorphism
+  bgDark: '#000000', // Solid black
+  bgCard: '#0a0a0a', // Base for glassmorphism
   bgElevated: 'rgba(255, 255, 255, 0.05)', // Slightly raised glass
-  bgInput: 'rgba(255, 255, 255, 0.08)',
+  bgInput: '#111111',
   
   // Gradients will use array of colors or we define start/end
   primary: '#7c3aed', // Primary gradient start (violet)
@@ -21,7 +21,7 @@ const COLORS = {
   textSecondary: '#E2E8F0', // Light gray
   textMuted: '#94A3B8', // Medium gray
   
-  border: 'rgba(255, 255, 255, 0.1)',
+  border: 'rgba(255, 255, 255, 0.08)',
   borderLight: 'rgba(255, 255, 255, 0.15)',
   
   success: '#22D3EE', // Cyan-ish for success

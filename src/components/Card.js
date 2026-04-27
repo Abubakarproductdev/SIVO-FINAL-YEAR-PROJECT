@@ -7,10 +7,10 @@ import { RADIUS, SPACING } from '../constants/theme';
 // =============================================
 // CARD COMPONENT (GLASS)
 // =============================================
-function Card({ children, style }) {
+function Card({ children, style, ...props }) {
   // Use a fallback View if expo-blur isn't fully supported, but normally it is.
   return (
-    <BlurView intensity={20} tint="dark" style={[styles.card, style]}>
+    <BlurView intensity={20} tint="dark" style={[styles.card, style]} dataSet={{ className: 'sivo-card' }} {...props}>
       {children}
     </BlurView>
   );

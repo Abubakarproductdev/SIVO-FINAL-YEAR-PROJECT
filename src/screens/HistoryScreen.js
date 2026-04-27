@@ -19,9 +19,9 @@ function HistoryScreen({ navigate }) {
   const { history } = useChat();
 
   return (
-    <View style={styles.historyBg}>
+    <View style={styles.historyBg} dataSet={{ className: 'sivo-bg-container' }}>
       {/* Ambient glow */}
-      <View style={styles.glow} />
+      <View style={styles.glow} dataSet={{ className: 'sivo-glow' }} />
 
       <ScrollView
         style={styles.historyContainer}

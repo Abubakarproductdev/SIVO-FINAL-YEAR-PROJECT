@@ -59,6 +59,7 @@ function ActionButton({ title, IconComponent, onPress, style, bgColor, loading, 
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.actionButton}
+          dataSet={{ className: 'sivo-action-btn' }}
         >
           {loading ? (
             <ActivityIndicator color={textColor || '#FFF'} />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, StatusBar, StyleSheet } from 'react-native';
+import './App.css';
 import { useFonts } from 'expo-font';
 import { Orbitron_700Bold } from '@expo-google-fonts/orbitron';
 import { DMSans_400Regular, DMSans_500Medium, DMSans_700Bold } from '@expo-google-fonts/dm-sans';
@@ -39,8 +40,15 @@ export default function App() {
     DMSans_700Bold,
   });
 
-  // 1. AUTH LISTENER
+  // 1. AUTH LISTENER & THEME INIT
   useEffect(() => {
+    // Initialize theme from localStorage for web
+    if (typeof document !== 'undefined' && typeof localStorage !== 'undefined') {
+      if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode');
+      }
+    }
+
     if (auth) {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
@@ -109,7 +117,7 @@ export default function App() {
 
   return (
     <ChatProvider>
-      <View style={styles.container}>
+      <View style={styles.container} dataSet={{ className: 'sivo-bg-container' }}>
         <StatusBar barStyle="light-content" backgroundColor={COLORS.bgDark} />
         {showTopBar && (
           <TopBar screen={currentScreen} onBackClick={() => navigate('Home')} />
