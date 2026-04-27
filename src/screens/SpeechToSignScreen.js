@@ -42,10 +42,10 @@ function SpeechToSignScreen({ navigate }) {
 
   if (status === 'idle') {
     return (
-      <View style={styles.speechScreen}>
-        <View style={styles.ambientGlow} />
+      <View style={styles.speechScreen} dataSet={{ className: 'sivo-bg-container' }}>
+        <View style={styles.ambientGlow} dataSet={{ className: 'sivo-glow' }} />
         <View style={styles.speechContent}>
-          <Text style={styles.speechInstruction}>
+          <Text style={styles.speechInstruction} dataSet={{ className: 'sivo-status-text' }}>
             Tap the microphone to start{'\n'}recording your voice
           </Text>
           <View style={styles.waveformPreview}>
@@ -74,10 +74,10 @@ function SpeechToSignScreen({ navigate }) {
 
   if (status === 'recording') {
     return (
-      <View style={styles.speechScreen}>
-        <View style={styles.ambientGlowAccent} />
+      <View style={styles.speechScreen} dataSet={{ className: 'sivo-bg-container' }}>
+        <View style={styles.ambientGlowAccent} dataSet={{ className: 'sivo-glow' }} />
         <View style={styles.speechContent}>
-          <Text style={styles.speechStatusText}>Recording in progress...</Text>
+          <Text style={styles.speechStatusText} dataSet={{ className: 'sivo-status-text' }}>Recording in progress...</Text>
           <View style={styles.recIndicator}>
             <View style={styles.recDot} />
             <Text style={styles.recText}>REC</Text>
@@ -101,8 +101,8 @@ function SpeechToSignScreen({ navigate }) {
 
   if (status === 'converting') {
     return (
-      <View style={styles.speechScreen}>
-        <View style={styles.ambientGlow} />
+      <View style={styles.speechScreen} dataSet={{ className: 'sivo-bg-container' }}>
+        <View style={styles.ambientGlow} dataSet={{ className: 'sivo-glow' }} />
         <View style={styles.speechContent}>
           <Text style={styles.speechSubtext}>Converting to sign language</Text>
           <Card style={styles.convertedTextCard}>
