@@ -137,12 +137,12 @@ def get_best_sentence_match(raw_predicted_words):
     # 4. Fallback Logic
     # If we found a match with at least 1 word overlap, return it.
     if best_score > 0:
-        print(f"✅ Smart Match: Raw='{predicted_set}' -> Matched='{best_sentence}' (Score: {best_score})")
+        print(f" Smart Match: Raw='{predicted_set}' -> Matched='{best_sentence}' (Score: {best_score})")
         return best_sentence
     else:
         # If score is 0 (total gibberish), just return the raw words
         raw_sentence = " ".join(raw_predicted_words)
-        print(f"⚠️ No Match Found. Returning raw: {raw_sentence}")
+        print(f" No Match Found. Returning raw: {raw_sentence}")
         return raw_sentence
 
 # ============================================================================
